@@ -17,10 +17,16 @@ namespace DeveloperSample.Algorithms
             var overEx = Assert.Throws<OverflowException>(() => Algorithms.GetFactorial(20));
         }
 
-        [Fact(Skip = "Not implemented")]
+        [Fact]
         public void CanFormatSeparators()
         {
-            Assert.Equal("a, b and c", Algorithms.FormatSeparators("a", "b", "c"));
+            Assert.Equal("", Algorithms.FormatSeparators(null));
+            Assert.Equal("", Algorithms.FormatSeparators(""));
+            Assert.Equal("a", Algorithms.FormatSeparators("a"));
+            Assert.Equal("a and b", Algorithms.FormatSeparators("a", "b"));
+            Assert.Equal("a and b", Algorithms.FormatSeparators("a", "b"));
+            Assert.Equal("item1, item2 and item3", Algorithms.FormatSeparators("item1", "item2", "item3"));
+            Assert.Equal("a, b, c and d", Algorithms.FormatSeparators("a", "b", "c", "d"));
         }
     }
 }

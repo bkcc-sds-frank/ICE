@@ -21,6 +21,56 @@ namespace DeveloperSample.Algorithms
             return result;
         }
 
-        public static string FormatSeparators(params string[] items) => throw new NotImplementedException();
+        public static string FormatSeparators(params string[] items)
+        {
+            string wip = "";
+            if (null == items)
+            {
+                return "";
+            }
+            if (items == null)
+            {
+                return "";
+            }
+
+            if (items.Length == 0)
+            {
+                return "";
+            }
+
+            if (items.Length == 1)
+            {
+                return items[0];
+            }
+
+            if (items.Length == 2)
+            {
+                return $"{items[items.Length - 2]} and {items[items.Length - 1]}";
+            }
+
+            var idx = items.Length - 1;
+            while (idx > -1)
+            {
+                wip = Next(items, idx) + wip;
+                idx--;
+            }
+            return wip;
+        }
+
+        private static string Next(string[] items, int idx)
+        {
+            if (idx == items.Length - 1)
+            {
+                return $"{items[items.Length - 2]} and {items[items.Length - 1]}";
+            }
+
+            if (idx == items.Length - 2) //skip the first item in the "and" portion
+            {
+                return "";
+            }
+
+            return items[idx] + ", ";
+        }
+
     }
 }
